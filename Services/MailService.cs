@@ -40,10 +40,8 @@ namespace ProbeaufgabeMedifoxDan.Services
 
         private void ApproveUser(string userMail, IUserService userService)
         {
-            User user = userService.GetByMail(userMail);
-            user.Approved = true;
-
-            userService.Update(user);
+            RegistrationService registrationService = new RegistrationService(userService);
+            registrationService.ApproveUser(userMail);
         }
 
         public void SendRequestResetPasswordMail(string userMail)

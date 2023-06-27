@@ -46,5 +46,13 @@ namespace ProbeaufgabeMedifoxDan.Services
             this.mailService.SendRegistrationMail(newUser.Email);
             return created;
         }
+
+        public void ApproveUser(string userMail)
+        {
+            User toApprove = this.userService.GetByMail(userMail);
+            toApprove.Approved = true;
+
+            this.userService.Update(toApprove);
+        }
     }
 }
